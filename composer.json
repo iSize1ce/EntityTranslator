@@ -1,7 +1,7 @@
 {
     "name": "isize1ce/entity-translator",
     "license": "MIT",
-    "description": "Simple DataMapper for repositories",
+    "description": "Entity translator & mapper for creating entity objects from database array in repositories",
     "type": "library",
     "authors": [
         {
