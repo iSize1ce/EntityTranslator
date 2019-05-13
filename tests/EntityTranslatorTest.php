@@ -2,6 +2,7 @@
 
 namespace EntityMapper;
 
+use DateTime;
 use EntityTranslator\EntityProperty;
 use EntityTranslator\EntityTranslator;
 use EntityTranslator\Type\BoolType;
@@ -28,12 +29,12 @@ class TestEntity
 
     private $bool;
 
-    public function getBool()
+    public function getBool(): bool
     {
         return $this->bool;
     }
 
-    public function setBool($bool)
+    public function setBool(bool $bool): void
     {
         $this->bool = $bool;
     }
@@ -44,20 +45,6 @@ class TestEntity
  */
 class EntityTranslatorTest extends TestCase
 {
-    private function getEntityTranslator()
-    {
-        $entityTranslator = new EntityTranslator(TestEntity::class);
-
-        $entityTranslator->addProperty('float', 'float_field', FloatType::class);
-        $entityTranslator->addProperty('int', 'int_field', IntType::class);
-        $entityTranslator->addProperty('dateTime', 'dateTime_field', DateTimeType::class);
-        $entityTranslator->addProperty('string', 'string_field', StringType::class);
-        $entityTranslator->addProperty('json', null, JsonType::class);
-        $entityTranslator->addProperty('bool', 'bool_field', BoolType::class, EntityProperty::VISIBILITY_GET_SET);
-
-        return $entityTranslator;
-    }
-
     /**
      * @covers EntityTranslator::makeEntityFromDbArray()
      */
@@ -72,20 +59,20 @@ class EntityTranslatorTest extends TestCase
             'string_field' => 'string',
             'json' => '{"test":1,"anotherTest":2}',
             'bool_field' => '1',
-            'unused' => 'do not put it in object'
+            'unused' => 'do not put it in object',
         ];
 
-        $entity = $translator->makeEntityFromDbArray($arrayFromDb);
+        $actual = $translator->makeEntityFromDbArray($arrayFromDb);
 
-        $expectedEntity = new TestEntity();
-        $expectedEntity->float = 123.123;
-        $expectedEntity->int = 123;
-        $expectedEntity->dateTime = new \DateTime('2018-08-08 08:14:58');
-        $expectedEntity->string = 'string';
-        $expectedEntity->json = ['test' => 1, 'anotherTest' => 2];
-        $expectedEntity->setBool(true);
+        $expected = new TestEntity();
+        $expected->float = 123.123;
+        $expected->int = 123;
+        $expected->dateTime = new DateTime('2018-08-08 08:14:58');
+        $expected->string = 'string';
+        $expected->json = ['test' => 1, 'anotherTest' => 2];
+        $expected->setBool(true);
 
-        $this->assertEquals($expectedEntity, $entity);
+        $this->assertEquals($expected, $actual);
     }
 
     /**
@@ -98,22 +85,36 @@ class EntityTranslatorTest extends TestCase
         $entity = new TestEntity();
         $entity->float = 123.123;
         $entity->int = 123;
-        $entity->dateTime = new \DateTime('2018-08-08 08:14:58');
+        $entity->dateTime = new DateTime('2018-08-08 08:14:58');
         $entity->string = 'string';
         $entity->json = ['test' => 1, 'anotherTest' => 2];
         $entity->setBool(true);
 
-        $dbArray = $translator->makeDbArrayFromEntity($entity);
+        $actual = $translator->makeDbArrayFromEntity($entity);
 
-        $expectedArray = [
+        $expected = [
             'float_field' => '123.123',
             'int_field' => '123',
             'dateTime_field' => '2018-08-08 08:14:58',
             'string_field' => 'string',
             'json' => '{"test":1,"anotherTest":2}',
-            'bool_field' => '1'
+            'bool_field' => '1',
         ];
 
-        $this->assertEquals($expectedArray, $dbArray);
+        $this->assertEquals($expected, $actual);
+    }
+
+    private function getEntityTranslator(): EntityTranslator
+    {
+        $entityTranslator = new EntityTranslator(TestEntity::class);
+
+        $entityTranslator->addProperty('float', 'float_field', FloatType::class);
+        $entityTranslator->addProperty('int', 'int_field', IntType::class);
+        $entityTranslator->addProperty('dateTime', 'dateTime_field', DateTimeType::class);
+        $entityTranslator->addProperty('string', 'string_field', StringType::class);
+        $entityTranslator->addProperty('json', null, JsonType::class);
+        $entityTranslator->addProperty('bool', 'bool_field', BoolType::class, EntityProperty::VISIBILITY_GET_SET);
+
+        return $entityTranslator;
     }
 }
