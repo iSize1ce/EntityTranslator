@@ -48,12 +48,12 @@ class MyEntity
      */
     private $stringProperty;
 
-    public function getStringProperty(): ?string
+    public function getStringProperty(): string
     {
         return $this->stringProperty;
     }
 
-    public function setStringProperty(?string $stringProperty): void
+    public function setStringProperty(string $stringProperty): void
     {
         $this->stringProperty = $stringProperty;
     }
@@ -69,7 +69,13 @@ class MyRepository
     public function __construct()
     {
         $this->entityTranslator = (new EntityTranslator(MyEntity::class))
-            ->addProperty('property', 'db_field', StringType::class);
+            ->addProperty('boolProperty', 'bool_property', BoolType::class, EntityProperty::VISIBILITY_PUBLIC)
+            ->addProperty('dateTimeProperty', 'date_time_property', DateTimeType::class, EntityProperty::VISIBILITY_PUBLIC)
+            ->addProperty('dateProperty', 'date_property', DateType::class, EntityProperty::VISIBILITY_PUBLIC)
+            ->addProperty('floatProperty', 'float_property', FloatType::class, EntityProperty::VISIBILITY_PUBLIC)
+            ->addProperty('intProperty', 'int_property', IntType::class, EntityProperty::VISIBILITY_PUBLIC)
+            ->addProperty('jsonProperty', 'json_property', JsonType::class, EntityProperty::VISIBILITY_PUBLIC)
+            ->addProperty('stringProperty', 'string_property', StringType::class, EntityProperty::VISIBILITY_GET_SET);
     }
 
     public function getById(): MyEntity
@@ -84,20 +90,7 @@ class MyRepository
             'json_property' => '{"test":true}',
         ];
 
-        return $this->createEntity($array);
-    }
-
-    private function createEntity(array $array): MyEntity
-    {
-        return $this->entityTranslator
-            ->addProperty('boolProperty', 'bool_property', BoolType::class, EntityProperty::VISIBILITY_PUBLIC)
-            ->addProperty('dateTimeProperty', 'date_time_property', DateTimeType::class, EntityProperty::VISIBILITY_PUBLIC)
-            ->addProperty('dateProperty', 'date_property', DateType::class, EntityProperty::VISIBILITY_PUBLIC)
-            ->addProperty('floatProperty', 'float_property', FloatType::class, EntityProperty::VISIBILITY_PUBLIC)
-            ->addProperty('intProperty', 'int_property', IntType::class, EntityProperty::VISIBILITY_PUBLIC)
-            ->addProperty('jsonProperty', 'json_property', JsonType::class, EntityProperty::VISIBILITY_PUBLIC)
-            ->addProperty('stringProperty', 'string_property', StringType::class, EntityProperty::VISIBILITY_GET_SET)
-            ->makeEntityFromDbArray($array);
+        return $this->entityTranslator->makeEntityFromDbArray($array);
     }
 }
 ```
