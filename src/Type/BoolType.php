@@ -2,22 +2,14 @@
 
 namespace EntityTranslator\Type;
 
-class BoolType implements Type
+class BoolType implements TypeInterface
 {
-    /**
-     * @inheritdoc
-     * @return bool
-     */
-    public function translateForDb($value)
+    public function translateForDb($value): int
     {
         return (bool)(int)$value;
     }
 
-    /**
-     * @inheritdoc
-     * @return bool
-     */
-    public function translateForEntity($value)
+    public function translateForEntity($value): bool
     {
         return (bool)$value;
     }

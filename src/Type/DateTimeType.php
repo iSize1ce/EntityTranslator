@@ -2,23 +2,17 @@
 
 namespace EntityTranslator\Type;
 
-class DateTimeType implements Type
+use DateTime;
+
+class DateTimeType implements TypeInterface
 {
-    /**
-     * @param \DateTime $value
-     * @return string
-     */
-    public function translateForDb($value)
+    public function translateForDb($value): string
     {
         return $value->format('Y-m-d H:i:s');
     }
 
-    /**
-     * @inheritdoc
-     * @return \DateTime
-     */
-    public function translateForEntity($value)
+    public function translateForEntity($value): DateTime
     {
-        return new \DateTime($value);
+        return new DateTime($value);
     }
 }

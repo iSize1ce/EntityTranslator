@@ -4,7 +4,7 @@ namespace EntityTranslator;
 
 class EntityProperty
 {
-    const VISIBILITY_PUBLIC  = 'public';
+    const VISIBILITY_PUBLIC = 'public';
     const VISIBILITY_GET_SET = 'getSet';
 
     /**
@@ -19,7 +19,7 @@ class EntityProperty
 
     /**
      * @var string Type class
-     * @see Type
+     * @see TypeInterface
      */
     private $typeClass;
 
@@ -28,73 +28,48 @@ class EntityProperty
      */
     private $visibility;
 
-    /**
-     * @param string $entityPropertyName
-     * @param string $dbFieldName
-     * @param string $typeClass
-     * @param string $visibility
-     */
-    public function __construct($entityPropertyName, $dbFieldName, $typeClass, $visibility)
+    public function __construct(string $entityPropertyName, string $dbFieldName, string $typeClass, string $visibility)
     {
         $this->propertyName = $entityPropertyName;
-        $this->dbFieldName  = $dbFieldName;
-        $this->typeClass    = $typeClass;
-        $this->visibility   = $visibility;
+        $this->dbFieldName = $dbFieldName;
+        $this->typeClass = $typeClass;
+        $this->visibility = $visibility;
     }
 
-    /**
-     * @return string
-     */
-    public function getPropertyName()
+    public function getPropertyName(): string
     {
         return $this->propertyName;
     }
 
-    /**
-     * @return string
-     */
-    public function getDbFieldName()
+    public function getDbFieldName(): string
     {
         return $this->dbFieldName;
     }
 
     /**
-     * @return string
-     * @see Type
+     * @see TypeInterface
      */
-    public function getTypeClass()
+    public function getTypeClass(): string
     {
         return $this->typeClass;
     }
 
-    /**
-     * @return bool
-     */
-    public function isPublicVisibility()
+    public function isPublicVisibility(): bool
     {
         return $this->visibility === self::VISIBILITY_PUBLIC;
     }
 
-    /**
-     * @return bool
-     */
-    public function isGetSetVisibility()
+    public function isGetSetVisibility(): bool
     {
         return $this->visibility === self::VISIBILITY_GET_SET;
     }
 
-    /**
-     * @return string
-     */
-    public function getGetMethodName()
+    public function getGetMethodName(): string
     {
         return 'get' . ucfirst($this->getPropertyName());
     }
 
-    /**
-     * @return string
-     */
-    public function getSetMethodName()
+    public function getSetMethodName(): string
     {
         return 'set' . ucfirst($this->getPropertyName());
     }

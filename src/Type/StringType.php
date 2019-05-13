@@ -2,22 +2,14 @@
 
 namespace EntityTranslator\Type;
 
-class StringType implements Type
+class StringType implements TypeInterface
 {
-    /**
-     * @inheritdoc
-     * @return string
-     */
-    public function translateForDb($value)
+    public function translateForDb($value): string
     {
         return (string)$value;
     }
 
-    /**
-     * @inheritdoc
-     * @return string
-     */
-    public function translateForEntity($value)
+    public function translateForEntity($value): string
     {
         return (string)$value;
     }

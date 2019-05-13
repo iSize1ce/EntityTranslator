@@ -2,7 +2,7 @@
 
 namespace EntityTranslator\Type;
 
-interface Type
+interface TypeInterface
 {
     /**
      * @param mixed $value

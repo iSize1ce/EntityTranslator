@@ -2,22 +2,14 @@
 
 namespace EntityTranslator\Type;
 
-class IntType implements Type
+class IntType implements TypeInterface
 {
-    /**
-     * @inheritdoc
-     * @return int
-     */
-    public function translateForDb($value)
+    public function translateForDb($value): int
     {
         return (int)$value;
     }
 
-    /**
-     * @inheritdoc
-     * @return int
-     */
-    public function translateForEntity($value)
+    public function translateForEntity($value): int
     {
         return (int)$value;
     }

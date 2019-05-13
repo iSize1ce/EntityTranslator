@@ -2,22 +2,14 @@
 
 namespace EntityTranslator\Type;
 
-class JsonType implements Type
+class JsonType implements TypeInterface
 {
-    /**
-     * @inheritdoc
-     * @return string
-     */
-    public function translateForDb($value)
+    public function translateForDb($value): string
     {
         return json_encode($value);
     }
 
-    /**
-     * @param string $value
-     * @return array
-     */
-    public function translateForEntity($value)
+    public function translateForEntity($value): array
     {
         return json_decode($value, true);
     }

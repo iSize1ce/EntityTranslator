@@ -2,22 +2,14 @@
 
 namespace EntityTranslator\Type;
 
-class FloatType implements Type
+class FloatType implements TypeInterface
 {
-    /**
-     * @inheritdoc
-     * @return float
-     */
-    public function translateForDb($value)
+    public function translateForDb($value): string
     {
-        return (float)$value;
+        return (string)$value;
     }
 
-    /**
-     * @inheritdoc
-     * @return float
-     */
-    public function translateForEntity($value)
+    public function translateForEntity($value): float
     {
         return (float)$value;
     }
