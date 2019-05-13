@@ -83,7 +83,7 @@ class EntitySchema
         return $result;
     }
 
-    public function addProperty(string $propertyName, string $dbFieldName, string $typeClass, string $visibility = EntityProperty::VISIBILITY_PUBLIC): EntitySchema
+    public function addProperty(string $propertyName, ?string $dbFieldName, string $typeClass, string $visibility = EntityProperty::VISIBILITY_PUBLIC): EntitySchema
     {
         if ($dbFieldName === null) {
             $dbFieldName = $propertyName;

@@ -32,7 +32,7 @@ class EntityTranslator
         return $this->entitySchema->makeDbArrayFromEntity($entity);
     }
 
-    public function addProperty(string $propertyName, string $dbFieldName, string $typeClass, string $visibility = EntityProperty::VISIBILITY_PUBLIC): EntityTranslator
+    public function addProperty(string $propertyName, ?string $dbFieldName, string $typeClass, string $visibility = EntityProperty::VISIBILITY_PUBLIC): EntityTranslator
     {
         $this->entitySchema->addProperty($propertyName, $dbFieldName, $typeClass, $visibility);
 
