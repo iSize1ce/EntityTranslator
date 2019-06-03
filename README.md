@@ -1,3 +1,33 @@
+# EntityTranslator
+
+```php
+$entityTranslator = new EntityTranslator(SomeYourEntity::class);
+$entityTranslator->addProperty('boolProperty', 'bool_property', BoolType::class, EntityProperty::VISIBILITY_PUBLIC)
+$entityTranslator->addProperty('dateTimeProperty', 'date_time_property', DateTimeType::class, EntityProperty::VISIBILITY_PUBLIC)
+$entityTranslator->addProperty('dateProperty', 'date_property', DateType::class, EntityProperty::VISIBILITY_PUBLIC)
+$entityTranslator->addProperty('floatProperty', 'float_property', FloatType::class, EntityProperty::VISIBILITY_PUBLIC)
+$entityTranslator->addProperty('intProperty', 'int_property', IntType::class, EntityProperty::VISIBILITY_PUBLIC)
+$entityTranslator->addProperty('jsonProperty', 'json_property', JsonType::class, EntityProperty::VISIBILITY_PUBLIC)
+$entityTranslator->addProperty('stringProperty', 'string_property', StringType::class, EntityProperty::VISIBILITY_GET_SET);
+```
+
+## Translate strategy
+
+Properties
+Getters/setters
+
+## Supported types 
+
+Boolean
+DateTime
+Date (DateTime)
+Float
+Integer
+Json
+String
+
+## Example
+
 ```php
 <?php
 
