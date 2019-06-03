@@ -6,7 +6,7 @@ $entityTranslator->addProperty(
     'objectPropertyName',
     'mysqlColumnName', // Can be null if column is equal object property name
     FloatType::class,
-    EntityProperty::VISIBILITY_PUBLIC // EntityProperty::VISIBILITY_PUBLIC or EntityProperty::VISIBILITY_GET_SET
+    EntityProperty::VISIBILITY_PUBLIC // Or EntityProperty::VISIBILITY_GET_SET
 );
 
 $entityTranslator->makeDbArrayFromEntity($entity); // Return array for db prepared statement
