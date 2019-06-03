@@ -1,9 +1,16 @@
 # EntityTranslator
 
 ```php
-$entityTranslator = new EntityTranslator(SomeYourEntity::class);
-$entityTranslator->addProperty('objectPropertyName', 'mysqlColumnName', FloatType::class, EntityProperty::VISIBILITY_PUBLIC)
-$entityTranslator->addProperty('objectPropertyName', 'mysqlColumnName', JsonType::class, EntityProperty::VISIBILITY_GET_SET)
+$entityTranslator = new EntityTranslator(SomeEntity::class);
+$entityTranslator->addProperty(
+    'objectPropertyName',
+    'mysqlColumnName', // Can be null if column is equal object property name
+    FloatType::class,
+    EntityProperty::VISIBILITY_PUBLIC // EntityProperty::VISIBILITY_PUBLIC or EntityProperty::VISIBILITY_GET_SET
+);
+
+$entityTranslator->makeDbArrayFromEntity($entity); // Return array for db prepared statement
+$entityTranslator->makeEntityFromDbArray($dbResult); // Return SomeEntity
 ```
 
 ## Translate strategy
