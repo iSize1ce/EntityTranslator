@@ -46,7 +46,7 @@ class EntityTranslatorTest extends TestCase
     /**
      * @covers EntityTranslator::makeEntityFromDbArray()
      */
-    public function test_makeEntityFromDbArray()
+    public function testMakeEntityFromDbArray()
     {
         $translator = $this->getEntityTranslator();
 
@@ -76,7 +76,7 @@ class EntityTranslatorTest extends TestCase
     /**
      * @covers EntityTranslator::makeDbArrayFromEntity()
      */
-    public function test_makeDbArrayFromEntity()
+    public function testMakeDbArrayFromEntity()
     {
         $translator = $this->getEntityTranslator();
 
