@@ -2,7 +2,6 @@
 
 namespace EntityTranslator\Type;
 
-use DateTime;
 use PHPUnit\Framework\TestCase;
 
 /**
