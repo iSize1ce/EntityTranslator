@@ -13,18 +13,18 @@ $entityTranslator->addProperty('stringProperty', 'string_property', StringType::
 
 ## Translate strategy
 
-Properties
-Getters/setters
+* Properties
+* Getters/setters
 
 ## Supported types 
 
-Boolean
-DateTime
-Date (DateTime)
-Float
-Integer
-Json
-String
+* Boolean
+* DateTime
+* Date (DateTime)
+* Float
+* Integer
+* Json
+* String
 
 ## Example
 
