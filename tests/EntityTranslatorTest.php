@@ -1,10 +1,8 @@
 <?php
 
-namespace EntityMapper;
+namespace EntityTranslator;
 
 use DateTime;
-use EntityTranslator\EntityProperty;
-use EntityTranslator\EntityTranslator;
 use EntityTranslator\Type\BoolType;
 use EntityTranslator\Type\DateTimeType;
 use EntityTranslator\Type\FloatType;
